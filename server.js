@@ -4,8 +4,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const userRouter = require("./routes/userRoute");
+const productRouter = require("./routes/productRoute");
 const errorHandler = require("./middleware/errorMiddleware");
 const cookieParser = require("cookie-parser");
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 //Middleware
@@ -22,6 +24,7 @@ app.get("/", (req, res) => {
 //Route middleware
 app.use("/api/users", userRouter);
 
+app.use("/api/product", productRouter);
 //Error middleware
 app.use(errorHandler);
 

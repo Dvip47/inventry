@@ -166,8 +166,6 @@ const getUser = asyncHandler(async (req, res) => {
 
 //get all user
 const alluser = asyncHandler(async (req, res) => {
-  const user = User.find({});
-  const { _id, fname, lname, email, photo, phone, bio, role } = user;
   let data = await User.find({ role: { $ne: "Admin" } });
   res.status(201).json({ data });
 });
