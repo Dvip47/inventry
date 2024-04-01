@@ -27,18 +27,18 @@ app.use("/api/users", userRouter);
 
 app.use("/api/product", productRouter);
 
-app.use("/api/category",categoryRoute)
+app.use("/api/category",categoryRoute);
 //Error middleware
 app.use(errorHandler);
 
 //connect to db and start server
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
     });
   })
-  .catch(() => {
-    console.log("Mongoose connection failed");
+  .catch((e) => {
+    console.log("Mongoose connection failed",e);
   });
